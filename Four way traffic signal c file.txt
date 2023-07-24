@@ -1,0 +1,212 @@
+#include<reg51.h>
+
+//signal 1
+sbit top_left_red = P1^0;      // red
+sbit top_left_yellow = P1^1;      // yellow
+sbit top_left_green = P1^2;      // green
+
+//signal 2
+sbit bottom_left_red = P1^3;    // red
+sbit bottom_left_yellow = P1^4;     // yellow
+sbit bottom_left_green = P1^5;    // green
+
+//signal 3
+sbit top_right_red = P2^0;    // red
+sbit top_right_yellow = P2^1;    // yellow
+sbit top_right_green = P2^2;    // green
+
+//signal 4
+sbit bottom_right_red = P2^3;    // red
+sbit bottom_right_yellow = P2^4;     // yellow
+sbit bottom_right_green = P2^5;    // green
+
+
+
+void delay(int t);          
+void trafficlight(void);
+void main()                  // main program
+{                 
+	//P1=0x00;         // turned off the lights
+	//P2=0x00;        // turned off the lights
+	
+  while(1)
+     {
+	trafficlight();	
+     }
+
+}
+void delay(unsigned long int t)              // delay routine
+{
+	while(t>0)
+	{
+	unsigned long int i;
+	for(i=1;i<10*1275;i++);
+		t--;
+	}
+}
+void trafficlight(void)         // traffic light system program
+{
+	//loop 1
+	
+//P1= 0x11;  // traffic signal control data
+//P2= 0x04;
+top_left_red=0;    // signal 1
+top_left_yellow=0;	
+top_left_green=1;
+
+bottom_left_red=1;   // signal 2
+bottom_left_yellow=0;
+bottom_left_green=0;
+
+top_right_red=1;   // signal 3
+top_right_yellow=0;
+top_right_green=0;
+
+bottom_right_red=1;  //signnal 4
+bottom_right_yellow=0;
+bottom_right_green=0;
+	
+	
+// loop 2
+delay(10);   // delay 
+//P1= 0x0c;    // traffic signal control data
+//P2= 0x02;
+top_left_red=0; // signal 1
+top_left_yellow=1;
+top_left_green=0;
+
+bottom_left_red=1;   // signal 2
+bottom_left_yellow=0;
+bottom_left_green=0;
+
+top_right_red=1;   // signal 3
+top_right_yellow=0;
+top_right_green=0;
+
+bottom_right_red=1;  //signnal 4
+bottom_right_yellow=0;
+bottom_right_green=0;
+delay(5);
+//P1= 0x0c;    // traffic signal control data
+//P2= 0x02;
+ 
+top_left_red=1; // signal
+top_left_yellow=0;
+top_left_green=0;
+
+bottom_left_red=0;   // signal 2
+bottom_left_yellow=0;
+bottom_left_green=1;
+
+top_right_red=1;   // signal 3
+top_right_yellow=0;
+top_right_green=0;
+
+bottom_right_red=1;  //signnal 4
+bottom_right_yellow=0;
+bottom_right_green=0;
+
+
+// loop 3
+delay(10);  // delay
+P2= 0x20;  // traffic signal control data
+P3= 0x03;
+top_left_red=1; // signal 1
+top_left_yellow=0;
+top_left_green=0;
+
+bottom_left_red=0;   // signal 2
+bottom_left_yellow=1;
+bottom_left_green=0;
+
+top_right_red=1;   // signal 3
+top_right_yellow=0;
+top_right_green=0;
+
+bottom_right_red=1;  //signnal 4
+bottom_right_yellow=0;
+bottom_right_green=0;
+delay(5);
+//P2= 0x20;  // traffic signal control data
+//P3= 0x03;
+
+top_left_red=1; // signal 1
+top_left_yellow=0;
+top_left_green=0;
+
+bottom_left_red=1;   // signal 2
+bottom_left_yellow=0;
+bottom_left_green=0;
+
+top_right_red=0;   // signal 3
+top_right_yellow=0;
+top_right_green=1;
+
+bottom_right_red=1;  //signal 4
+bottom_right_yellow=0;
+bottom_right_green=0;
+
+
+// loop 4
+delay(10);  // delay
+//P2= 0x22;  // traffic signal control data
+//3= 0x01;
+top_left_red=1; // signal 1
+top_left_yellow=0;
+top_left_green=0;
+
+bottom_left_red=1;   // signal 2
+bottom_left_yellow=0;
+bottom_left_green=0;
+
+top_right_red=0;   // signal 3
+top_right_yellow=1;
+top_right_green=0;
+
+bottom_right_red=1;  //signnal 4
+bottom_right_yellow=0;
+bottom_right_green=0;
+delay(5);
+//P2= 0x22;  // traffic signal control data
+//P3= 0x01;
+
+top_left_red=1; // signal
+top_left_yellow=0;
+top_left_green=0;
+
+bottom_left_red=1;   // signal 2
+bottom_left_yellow=0;
+bottom_left_green=0;
+
+top_right_red=1;   // signal 3
+top_right_yellow=0;
+top_right_green=0;
+
+bottom_right_red=0;  //signal 4
+bottom_right_yellow=0;
+bottom_right_green=1;
+
+
+delay(10);  // delay
+//P1= 0x11;  // traffic signal control data
+//P2= 0x04;
+top_left_red=1; // signal
+top_left_yellow=0;
+top_left_green=0;
+
+bottom_left_red=1;   // signal 2
+bottom_left_yellow=0;
+bottom_left_green=0;
+
+top_right_red=1;   // signal 3
+top_right_yellow=0;
+top_right_green=0;
+
+bottom_right_red=0;  //signal 4
+bottom_right_yellow=1;
+bottom_right_green=0;
+
+delay(5);
+
+
+}
